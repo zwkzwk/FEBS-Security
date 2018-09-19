@@ -9,6 +9,7 @@ import cc.mrbird.quartz.service.JobLogService;
 import cc.mrbird.web.controller.base.BaseController;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class JobLogController extends BaseController {
 	}
 
 	@RequestMapping("jobLog/list")
+	@PreAuthorize("hasAuthority('jobLog:list')")
 	@ResponseBody
 	public Map<String, Object> jobLogList(QueryRequest request, JobLog log) {
 		PageHelper.startPage(request.getPageNum(), request.getPageSize());
@@ -81,4 +83,5 @@ public class JobLogController extends BaseController {
 			return ResponseBo.error("导出Csv失败，请联系网站管理员！");
 		}
 	}
+
 }

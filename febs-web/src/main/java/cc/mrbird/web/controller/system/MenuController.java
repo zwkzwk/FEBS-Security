@@ -36,6 +36,7 @@ public class MenuController extends BaseController {
     }
 
     @RequestMapping("menu/menu")
+    @PreAuthorize("hasAuthority('menu:list')")
     @ResponseBody
     public ResponseBo getMenu(String userName) {
         try {

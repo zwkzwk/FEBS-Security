@@ -34,6 +34,7 @@ public class LogController extends BaseController {
     }
 
     @RequestMapping("log/list")
+    @PreAuthorize("hasAuthority('log:list')")
     @ResponseBody
     public Map<String, Object> logList(QueryRequest request, SysLog log) {
         PageHelper.startPage(request.getPageNum(), request.getPageSize());

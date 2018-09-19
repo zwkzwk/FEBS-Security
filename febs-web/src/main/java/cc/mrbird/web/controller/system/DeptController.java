@@ -57,6 +57,7 @@ public class DeptController {
     }
 
     @RequestMapping("dept/list")
+    @PreAuthorize("hasAuthority('dept:list')")
     @ResponseBody
     public List<Dept> deptList(Dept dept) {
         try {

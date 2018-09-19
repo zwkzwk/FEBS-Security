@@ -36,6 +36,7 @@ public class DictController extends BaseController {
 	}
 
 	@RequestMapping("dict/list")
+	@PreAuthorize("hasAuthority('dict:list')")
 	@ResponseBody
 	public Map<String, Object> dictList(QueryRequest request, Dict dict) {
 		PageHelper.startPage(request.getPageNum(), request.getPageSize());

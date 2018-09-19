@@ -79,6 +79,7 @@ public class SessionController {
         }
     }
 
+    @PreAuthorize("hasAuthority('session:list')")
     @GetMapping("session/active")
     @ResponseBody
     public Map<String, Object> getAllSession(HttpServletRequest request) {

@@ -37,6 +37,7 @@ public class RoleController extends BaseController {
     }
 
     @RequestMapping("role/list")
+    @PreAuthorize("hasAuthority('role:list')")
     @ResponseBody
     public Map<String, Object> roleList(QueryRequest request, Role role) {
         PageHelper.startPage(request.getPageNum(), request.getPageSize());

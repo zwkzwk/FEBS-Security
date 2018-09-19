@@ -71,6 +71,7 @@ public class UserController extends BaseController {
 
     @Log("获取用户信息")
     @RequestMapping("user/list")
+    @PreAuthorize("hasAuthority('user:list')")
     @ResponseBody
     public Map<String, Object> userList(QueryRequest request, MyUser user) {
         PageHelper.startPage(request.getPageNum(), request.getPageSize());

@@ -37,6 +37,7 @@ public class JobController extends BaseController {
     }
 
     @RequestMapping("job/list")
+    @PreAuthorize("hasAuthority('job:list')")
     @ResponseBody
     public Map<String, Object> jobList(QueryRequest request, Job job) {
         PageHelper.startPage(request.getPageNum(), request.getPageSize());
