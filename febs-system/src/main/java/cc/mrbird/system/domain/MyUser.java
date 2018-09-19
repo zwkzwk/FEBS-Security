@@ -1,6 +1,7 @@
 package cc.mrbird.system.domain;
 
 import cc.mrbird.common.annotation.ExportConfig;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -306,7 +307,7 @@ public class MyUser implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        return o instanceof MyUser && this.username.equals(((MyUser) o).username);
+        return o instanceof MyUser && StringUtils.equals(this.username, ((MyUser) o).username);
     }
 
     @Override

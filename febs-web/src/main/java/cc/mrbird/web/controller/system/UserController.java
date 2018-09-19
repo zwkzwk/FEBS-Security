@@ -50,7 +50,7 @@ public class UserController extends BaseController {
     @RequestMapping("user/checkUserName")
     @ResponseBody
     public boolean checkUserName(String username, String oldusername) {
-        if (StringUtils.isNotBlank(oldusername) && username.equalsIgnoreCase(oldusername)) {
+        if (StringUtils.isNotBlank(oldusername) && StringUtils.equalsIgnoreCase(username, oldusername)) {
             return true;
         }
         MyUser result = this.userService.findByName(username);

@@ -71,7 +71,7 @@ public class DeptController {
     @RequestMapping("dept/checkDeptName")
     @ResponseBody
     public boolean checkDeptName(String deptName, String oldDeptName) {
-        if (StringUtils.isNotBlank(oldDeptName) && deptName.equalsIgnoreCase(oldDeptName)) {
+        if (StringUtils.isNotBlank(oldDeptName) && StringUtils.equalsIgnoreCase(deptName, oldDeptName)) {
             return true;
         }
         Dept result = this.deptService.findByName(deptName);

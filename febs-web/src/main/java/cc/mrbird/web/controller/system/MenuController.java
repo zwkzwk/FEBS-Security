@@ -111,7 +111,7 @@ public class MenuController extends BaseController {
     @RequestMapping("menu/checkMenuName")
     @ResponseBody
     public boolean checkMenuName(String menuName, String type, String oldMenuName) {
-        if (StringUtils.isNotBlank(oldMenuName) && menuName.equalsIgnoreCase(oldMenuName)) {
+        if (StringUtils.isNotBlank(oldMenuName) && StringUtils.equalsIgnoreCase(menuName, oldMenuName)) {
             return true;
         }
         Menu result = this.menuService.findByNameAndType(menuName, type);

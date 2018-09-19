@@ -1,6 +1,7 @@
 package cc.mrbird.common.utils;
 
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -112,7 +113,7 @@ public class HttpUtils {
             String ret = "";
             while (ret != null) {
                 ret = indata.readLine();
-                if (ret != null && !ret.trim().equals("")) {
+                if (StringUtils.isNotBlank(ret)) {
                     result.append(ret);
                 }
             }
@@ -140,7 +141,7 @@ public class HttpUtils {
 
     private static class TrustAnyHostnameVerifier implements HostnameVerifier {
         public boolean verify(String hostname, SSLSession session) {
-           return true;
+            return true;
         }
     }
 

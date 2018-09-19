@@ -61,7 +61,7 @@ public class RoleController extends BaseController {
     @RequestMapping("role/checkRoleName")
     @ResponseBody
     public boolean checkRoleName(String roleName, String oldRoleName) {
-        if (StringUtils.isNotBlank(oldRoleName) && roleName.equalsIgnoreCase(oldRoleName)) {
+        if (StringUtils.isNotBlank(oldRoleName) && StringUtils.equalsIgnoreCase(roleName, oldRoleName)) {
             return true;
         }
         Role result = this.roleService.findByName(roleName);

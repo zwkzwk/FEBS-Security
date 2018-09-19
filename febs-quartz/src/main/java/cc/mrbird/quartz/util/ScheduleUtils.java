@@ -1,5 +1,6 @@
 package cc.mrbird.quartz.util;
 
+import org.apache.commons.lang3.StringUtils;
 import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,7 +71,7 @@ public class ScheduleUtils {
             scheduler.scheduleJob(jobDetail, trigger);
 
             // 暂停任务
-            if (scheduleJob.getStatus().equals(Job.ScheduleStatus.PAUSE.getValue())) {
+            if (StringUtils.equals(scheduleJob.getStatus(), Job.ScheduleStatus.PAUSE.getValue())) {
                 pauseJob(scheduler, scheduleJob.getJobId());
             }
         } catch (SchedulerException e) {
@@ -103,7 +104,7 @@ public class ScheduleUtils {
             scheduler.rescheduleJob(triggerKey, trigger);
 
             // 暂停任务
-            if (scheduleJob.getStatus().equals(Job.ScheduleStatus.PAUSE.getValue())) {
+            if (StringUtils.equals(scheduleJob.getStatus(), Job.ScheduleStatus.PAUSE.getValue())) {
                 pauseJob(scheduler, scheduleJob.getJobId());
             }
 
