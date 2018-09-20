@@ -44,6 +44,7 @@ public class ValidateCodeController {
         BufferedImage image = imageCode.getImage();
         imageCode.setImage(null);
         sessionStrategy.setAttribute(new ServletWebRequest(request), FebsConstant.SESSION_KEY_IMAGE_CODE, imageCode);
+        response.setContentType("image/jpeg");
         ImageIO.write(image, "jpeg", response.getOutputStream());
     }
 
