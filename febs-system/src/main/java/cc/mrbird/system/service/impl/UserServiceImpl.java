@@ -8,7 +8,6 @@ import cc.mrbird.system.domain.UserRole;
 import cc.mrbird.system.domain.UserWithRole;
 import cc.mrbird.system.service.UserRoleService;
 import cc.mrbird.system.service.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +28,6 @@ import static cc.mrbird.common.utils.FebsUtil.isPhoneNo;
 public class UserServiceImpl extends BaseService<MyUser> implements UserService {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Override
     public MyUser findByNameOrMobile(String var) {

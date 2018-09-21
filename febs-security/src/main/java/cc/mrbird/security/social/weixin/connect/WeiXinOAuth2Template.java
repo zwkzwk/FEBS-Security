@@ -1,6 +1,5 @@
 package cc.mrbird.security.social.weixin.connect;
 
-import afu.org.checkerframework.checker.oigj.qual.O;
 import cc.mrbird.common.domain.FebsConstant;
 import cc.mrbird.security.exception.FebsCredentialExcetion;
 import com.fasterxml.jackson.databind.ObjectMapper;

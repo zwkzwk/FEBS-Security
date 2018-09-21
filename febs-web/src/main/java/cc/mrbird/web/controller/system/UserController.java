@@ -5,10 +5,9 @@ import cc.mrbird.common.domain.FebsConstant;
 import cc.mrbird.common.domain.QueryRequest;
 import cc.mrbird.common.domain.ResponseBo;
 import cc.mrbird.common.utils.FileUtils;
-import cc.mrbird.web.controller.base.BaseController;
 import cc.mrbird.system.domain.MyUser;
 import cc.mrbird.system.service.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import cc.mrbird.web.controller.base.BaseController;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
@@ -31,9 +30,6 @@ public class UserController extends BaseController {
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
     private static final String ON = "on";
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Autowired
     private UserService userService;

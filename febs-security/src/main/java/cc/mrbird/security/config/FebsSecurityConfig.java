@@ -200,7 +200,7 @@ public class FebsSecurityConfig extends WebSecurityConfigurerAdapter {
      * XssFilter Bean
      */
     @Bean
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public FilterRegistrationBean xssFilterRegistrationBean() {
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
         filterRegistrationBean.setFilter(new XssFilter());

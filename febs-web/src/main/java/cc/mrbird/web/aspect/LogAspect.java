@@ -118,7 +118,7 @@ public class LogAspect {
         this.logService.save(log);
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     private StringBuilder handleParams(StringBuilder params, Object[] args, List paramNames) throws IOException {
         for (int i = 0; i < args.length; i++) {
             if (args[i] instanceof Map) {
