@@ -3,6 +3,7 @@ febs.iml
 */target
 */*.iml
 /file
+log
 */log
 
 # eclipse files
