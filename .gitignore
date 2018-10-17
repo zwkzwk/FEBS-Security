@@ -4,7 +4,7 @@ febs.iml
 */*.iml
 /file
 log
-*/log
+febs-web/log
 
 # eclipse files
 .project
