@@ -3,4 +3,13 @@ febs.iml
 */target
 */*.iml
 /file
-/log
+log
+febs-web/log
+
+# eclipse files
+.project
+/.settings
+*/*.project
+*/.settings
+*/.classpath
+*/*.factorypath
