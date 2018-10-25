@@ -7,8 +7,6 @@ import cc.mrbird.common.utils.FileUtils;
 import cc.mrbird.quartz.domain.JobLog;
 import cc.mrbird.quartz.service.JobLogService;
 import cc.mrbird.web.controller.base.BaseController;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +37,7 @@ public class JobLogController extends BaseController {
 	@PreAuthorize("hasAuthority('jobLog:list')")
 	@ResponseBody
 	public Map<String, Object> jobLogList(QueryRequest request, JobLog log) {
-		PageHelper.startPage(request.getPageNum(), request.getPageSize());
-		List<JobLog> list = this.jobLogService.findAllJobLogs(log);
-		PageInfo<JobLog> pageInfo = new PageInfo<>(list);
-		return getDataTable(pageInfo);
+		return super.selectByPageNumSize(request, () -> this.jobLogService.findAllJobLogs(log));
 	}
 
 	@Log("删除调度日志")

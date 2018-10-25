@@ -3,11 +3,9 @@ package cc.mrbird.web.controller.system;
 import cc.mrbird.common.domain.QueryRequest;
 import cc.mrbird.common.domain.ResponseBo;
 import cc.mrbird.common.utils.FileUtils;
-import cc.mrbird.web.controller.base.BaseController;
 import cc.mrbird.system.domain.SysLog;
 import cc.mrbird.system.service.LogService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import cc.mrbird.web.controller.base.BaseController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +35,7 @@ public class LogController extends BaseController {
     @PreAuthorize("hasAuthority('log:list')")
     @ResponseBody
     public Map<String, Object> logList(QueryRequest request, SysLog log) {
-        PageHelper.startPage(request.getPageNum(), request.getPageSize());
-        List<SysLog> list = this.logService.findAllLogs(log);
-        PageInfo<SysLog> pageInfo = new PageInfo<>(list);
-        return getDataTable(pageInfo);
+        return super.selectByPageNumSize(request, () -> this.logService.findAllLogs(log));
     }
 
     @RequestMapping("log/excel")

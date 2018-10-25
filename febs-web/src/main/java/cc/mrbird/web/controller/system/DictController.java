@@ -4,11 +4,9 @@ import cc.mrbird.common.annotation.Log;
 import cc.mrbird.common.domain.QueryRequest;
 import cc.mrbird.common.domain.ResponseBo;
 import cc.mrbird.common.utils.FileUtils;
-import cc.mrbird.web.controller.base.BaseController;
 import cc.mrbird.system.domain.Dict;
 import cc.mrbird.system.service.DictService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import cc.mrbird.web.controller.base.BaseController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +37,7 @@ public class DictController extends BaseController {
 	@PreAuthorize("hasAuthority('dict:list')")
 	@ResponseBody
 	public Map<String, Object> dictList(QueryRequest request, Dict dict) {
-		PageHelper.startPage(request.getPageNum(), request.getPageSize());
-		List<Dict> list = this.dictService.findAllDicts(dict,request);
-		PageInfo<Dict> pageInfo = new PageInfo<>(list);
-		return getDataTable(pageInfo);
+		return super.selectByPageNumSize(request, () -> this.dictService.findAllDicts(dict,request));
 	}
 
 	@RequestMapping("dict/getDict")

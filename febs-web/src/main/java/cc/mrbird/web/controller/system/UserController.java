@@ -8,8 +8,6 @@ import cc.mrbird.common.utils.FileUtils;
 import cc.mrbird.system.domain.MyUser;
 import cc.mrbird.system.service.UserService;
 import cc.mrbird.web.controller.base.BaseController;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,10 +68,7 @@ public class UserController extends BaseController {
     @PreAuthorize("hasAuthority('user:list')")
     @ResponseBody
     public Map<String, Object> userList(QueryRequest request, MyUser user) {
-        PageHelper.startPage(request.getPageNum(), request.getPageSize());
-        List<MyUser> list = this.userService.findUserWithDept(user);
-        PageInfo<MyUser> pageInfo = new PageInfo<>(list);
-        return getDataTable(pageInfo);
+        return super.selectByPageNumSize(request, () -> this.userService.findUserWithDept(user));
     }
 
     @RequestMapping(FebsConstant.FEBS_REGIST_URL)

@@ -4,11 +4,9 @@ import cc.mrbird.common.annotation.Log;
 import cc.mrbird.common.domain.QueryRequest;
 import cc.mrbird.common.domain.ResponseBo;
 import cc.mrbird.common.utils.FileUtils;
-import cc.mrbird.web.controller.base.BaseController;
 import cc.mrbird.system.domain.Role;
 import cc.mrbird.system.service.RoleService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import cc.mrbird.web.controller.base.BaseController;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,10 +38,7 @@ public class RoleController extends BaseController {
     @PreAuthorize("hasAuthority('role:list')")
     @ResponseBody
     public Map<String, Object> roleList(QueryRequest request, Role role) {
-        PageHelper.startPage(request.getPageNum(), request.getPageSize());
-        List<Role> list = this.roleService.findAllRole(role);
-        PageInfo<Role> pageInfo = new PageInfo<>(list);
-        return getDataTable(pageInfo);
+        return super.selectByPageNumSize(request, () -> this.roleService.findAllRole(role));
     }
 
     @RequestMapping("role/getRole")

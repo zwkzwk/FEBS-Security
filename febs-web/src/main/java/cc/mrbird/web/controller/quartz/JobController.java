@@ -7,8 +7,6 @@ import cc.mrbird.common.utils.FileUtils;
 import cc.mrbird.quartz.domain.Job;
 import cc.mrbird.quartz.service.JobService;
 import cc.mrbird.web.controller.base.BaseController;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.quartz.CronExpression;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,10 +38,7 @@ public class JobController extends BaseController {
     @PreAuthorize("hasAuthority('job:list')")
     @ResponseBody
     public Map<String, Object> jobList(QueryRequest request, Job job) {
-        PageHelper.startPage(request.getPageNum(), request.getPageSize());
-        List<Job> list = this.jobService.findAllJobs(job);
-        PageInfo<Job> pageInfo = new PageInfo<>(list);
-        return getDataTable(pageInfo);
+        return super.selectByPageNumSize(request, () -> this.jobService.findAllJobs(job));
     }
 
     @RequestMapping("job/checkCron")
