@@ -1,5 +1,7 @@
 package cc.mrbird.web.controller.base;
 
+import cc.mrbird.common.exception.FileDownloadException;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -16,10 +18,14 @@ public class FileController {
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("file/download")
-    public void fileDownload(String fileName, Boolean delete, HttpServletResponse response) throws IOException {
+    public void fileDownload(String fileName, Boolean delete, HttpServletResponse response) throws IOException, FileDownloadException {
+        if (StringUtils.isNotBlank(fileName) && !fileName.endsWith("xlsx"))
+            throw new FileDownloadException("不支持该类型文件下载");
         String realFileName = System.currentTimeMillis() + fileName.substring(fileName.indexOf('_') + 1);
         String filePath = "file/" + fileName;
         File file = new File(filePath);
+        if (!file.exists())
+            throw new FileDownloadException("文件未找到");
         response.setHeader("Content-Disposition", "attachment;fileName=" + java.net.URLEncoder.encode(realFileName, "utf-8"));
         response.setContentType("multipart/form-data");
         response.setCharacterEncoding("utf-8");
