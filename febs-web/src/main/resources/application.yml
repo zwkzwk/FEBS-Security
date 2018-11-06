@@ -106,9 +106,11 @@ logging:
     cc:
       mrbird:
         system:
-          dao: debug
+          dao: info
 
 febs:
+  # 是否打印 sql语句
+  showsql: true
   # AOP记录用户操作日志，true开启，false关闭
   open-aop-log: true
   security:
