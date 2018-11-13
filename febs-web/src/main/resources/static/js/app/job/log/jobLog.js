@@ -91,7 +91,7 @@ function deleteJobLog() {
 function exportJobLogExcel() {
     $.post(ctx + "jobLog/excel", $(".jobLog-table-form").serialize(), function (r) {
         if (r.code === 0) {
-            window.location.href = "common/download?fileName=" + r.msg + "&delete=" + true;
+            window.location.href = "file/download?fileName=" + r.msg + "&delete=" + true;
         } else {
             $MB.n_warning(r.msg);
         }
@@ -101,7 +101,7 @@ function exportJobLogExcel() {
 function exportJobLogCsv() {
     $.post(ctx + "jobLog/csv", $(".jobLog-table-form").serialize(), function (r) {
         if (r.code === 0) {
-            window.location.href = "common/download?fileName=" + r.msg + "&delete=" + true;
+            window.location.href = "file/download?fileName=" + r.msg + "&delete=" + true;
         } else {
             $MB.n_warning(r.msg);
         }

@@ -331,21 +331,21 @@ public class ExcelUtils {
                 return export.handler(oldValue);
             }
         } catch (Exception e) {
-            log.error(e.getMessage());
+            log.error("error:{}", e);
         }
         return String.valueOf(oldValue);
     }
 
     private void requiredbuilderParams() {
         if (mClass == null) {
-            throw new IllegalArgumentException("请先使用cc.mrbird.util.poi.ExcelUtils.builder(Class<?>)构造器初始化参数。");
+            throw new IllegalArgumentException("请先使用cc.mrbird.common.utils.poi.ExcelUtils.builder(Class<?>)构造器初始化参数。");
         }
     }
 
     private void requiredexportParams() {
         if (mClass == null || mResponse == null) {
             throw new IllegalArgumentException(
-                    "请先使用cc.mrbird.util.poi.ExcelUtils.export(Class<?>, HttpServletResponse)构造器初始化参数。");
+                    "请先使用cc.mrbird.common.utils.poi.ExcelUtils.export(Class<?>, HttpServletResponse)构造器初始化参数。");
         }
 
     }

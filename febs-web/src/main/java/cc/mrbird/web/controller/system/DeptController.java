@@ -3,6 +3,7 @@ package cc.mrbird.web.controller.system;
 import cc.mrbird.common.annotation.Log;
 import cc.mrbird.common.domain.ResponseBo;
 import cc.mrbird.common.domain.Tree;
+import cc.mrbird.common.utils.FileUtils;
 import cc.mrbird.system.domain.Dept;
 import cc.mrbird.system.service.DeptService;
 import org.apache.commons.lang3.StringUtils;
@@ -117,6 +118,30 @@ public class DeptController {
         } catch (Exception e) {
             log.error("修改部门失败", e);
             return ResponseBo.error("修改部门失败，请联系网站管理员！");
+        }
+    }
+
+    @RequestMapping("dept/excel")
+    @ResponseBody
+    public ResponseBo deptExcel(Dept dept) {
+        try {
+            List<Dept> list = this.deptService.findAllDepts(dept);
+            return FileUtils.createExcelByPOIKit("部门表", list, Dept.class);
+        } catch (Exception e) {
+            log.error("导出部门信息Excel失败", e);
+            return ResponseBo.error("导出Excel失败，请联系网站管理员！");
+        }
+    }
+
+    @RequestMapping("dept/csv")
+    @ResponseBody
+    public ResponseBo deptCsv(Dept dept) {
+        try {
+            List<Dept> list = this.deptService.findAllDepts(dept);
+            return FileUtils.createCsv("部门表", list, Dept.class);
+        } catch (Exception e) {
+            log.error("获取部门信息Csv失败", e);
+            return ResponseBo.error("导出Csv失败，请联系网站管理员！");
         }
     }
 }

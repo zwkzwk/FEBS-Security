@@ -3,8 +3,7 @@ febs.iml
 */target
 */*.iml
 /file
-log
-febs-web/log
+/log
 
 # eclipse files
 .project
