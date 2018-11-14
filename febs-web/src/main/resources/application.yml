@@ -49,30 +49,30 @@ spring:
       namespace: febs:spring:session
 
 # spring boot admin配置开始
-  boot:
-    admin:
-      client:
-        url: http://localhost:8081
-        username: mrbird
-        password: 123456
-  application:
-    name: febs
-
-info:
-  app:
-    name: "febs-security"
-    description: "spring boot&spring security 权限管理系统"
-    version: "1.0"
-    spring-boot-version: "2.0.4.RELEASE"
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-  endpoint:
-    health:
-      show-details: ALWAYS
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:8081
+#        username: mrbird
+#        password: 123456
+#  application:
+#    name: febs
+#
+#info:
+#  app:
+#    name: "febs-security"
+#    description: "spring boot&spring security 权限管理系统"
+#    version: "1.0"
+#    spring-boot-version: "2.0.4.RELEASE"
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: ALWAYS
 # spring boot admin配置结束
 
 # 数据库密码加密 密钥
@@ -100,16 +100,8 @@ pagehelper:
   support-methods-arguments: true
   params: count=countSql
 
-# 日志打印级别，设为 debug可打印出 SQL
-logging:
-  level:
-    cc:
-      mrbird:
-        system:
-          dao: info
-
 febs:
-  # 是否打印 sql语句
+  # 是否在控制台打印 sql语句
   showsql: true
   # AOP记录用户操作日志，true开启，false关闭
   open-aop-log: true
