@@ -16,6 +16,11 @@
     </properties>
 
     <dependencies>
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
         <!-- poi -->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -64,7 +69,6 @@
     </dependencies>
     <build>
         <plugins>
-            <!--
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
@@ -96,7 +100,6 @@
                     <configurationFile>src/main/resources/config/mybatis-generator.xml</configurationFile>
                 </configuration>
             </plugin>
-            -->
         </plugins>
     </build>
 </project>
