@@ -9,6 +9,5 @@ public interface DictMapper extends MyMapper<Dict> {
 
     List<Dict> findDictByFieldName(String fieldName);
 
-
     Dict findDictByFieldNameAndKeyy(String fieldName, String keyy);
 }
