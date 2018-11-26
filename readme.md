@@ -104,11 +104,6 @@ FEBS-Security是一个简单高效的后台权限管理系统。项目基础框�
 </tr>
 </table>	
 
-新增thymeleaf自定义数据字典方言标签，具体使用方法：
-<dict:show fieldName="ssex" keyy="1"></dict:show>
-<dict:select fieldName="ssex"  name="type" keyy="1"  class="form-control" id="ssex"></dict:select>
-
-
 ## todo
 - [ ]  整合JWT
 - [ ]  SSO
@@ -144,6 +139,14 @@ FEBS-Security是一个简单高效的后台权限管理系统。项目基础框�
 ![2bd554ce2511cd1e7e3e7b3b56216ed6.png](http://olwqftdzl.bkt.clouddn.com/18-4-18/86512301.jpg)
 
 ![5e6d35e4390cf7f0752d7864ad701e2b.png](http://olwqftdzl.bkt.clouddn.com/18-4-18/81830531.jpg)
+
+## 更新日志
+**2018年11月26日 by[liuliuzx](https://github.com/liuliuzx)**
+新增thymeleaf自定义数据字典方言标签，具体使用方法：
+```
+<dict:show fieldName="ssex" keyy="1"></dict:show>
+<dict:select fieldName="ssex"  name="type" keyy="1" class="form-control" id="ssex"></dict:select>
+```
 
 ### 反馈交流
 ![](http://olwqftdzl.bkt.clouddn.com/18-9-18/77785846.jpg)
