@@ -16,11 +16,6 @@
     </properties>
 
     <dependencies>
-        <!-- lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
         <!-- poi -->
         <dependency>
             <groupId>org.apache.poi</groupId>

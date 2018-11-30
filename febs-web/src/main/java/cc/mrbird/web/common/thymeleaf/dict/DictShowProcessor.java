@@ -2,7 +2,8 @@ package cc.mrbird.web.common.thymeleaf.dict;
 
 import cc.mrbird.system.domain.Dict;
 import cc.mrbird.system.service.DictService;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.context.ITemplateContext;
@@ -15,8 +16,9 @@ import org.thymeleaf.standard.expression.IStandardExpressionParser;
 import org.thymeleaf.standard.expression.StandardExpressions;
 import org.thymeleaf.templatemode.TemplateMode;
 
-@Slf4j
 public class DictShowProcessor extends AbstractElementTagProcessor {
+    private Logger log = LoggerFactory.getLogger(this.getClass());
+
     private static final String TAG_NAME = "show";// 标签名
     private static final int PRECEDENCE = 300;
     private static final String FIELD_NAME = "fieldName";// 字典编码
@@ -51,7 +53,6 @@ public class DictShowProcessor extends AbstractElementTagProcessor {
         }
         structureHandler.replaceWith(label, false);
     }
-
 
 
 }

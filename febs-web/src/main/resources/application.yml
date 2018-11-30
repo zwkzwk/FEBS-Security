@@ -101,6 +101,13 @@ pagehelper:
   params: count=countSql
 
 febs:
+  oss:
+    # 七牛云存储配置
+    qiniu:
+      access-key: your-access-key
+      secret-key: your-secret-key
+      bucket: your-bucket
+      path: your-path
   # 是否在控制台打印 sql语句
   showsql: true
   # AOP记录用户操作日志，true开启，false关闭

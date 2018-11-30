@@ -1,7 +1,6 @@
 package cc.mrbird;
 
 import cc.mrbird.common.properties.FebsProperies;
-import cc.mrbird.common.properties.FebsOssQiniuProperties;
 import cc.mrbird.security.properties.FebsSecurityProperties;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.LoggerFactory;
@@ -18,7 +17,7 @@ import java.time.LocalTime;
 
 @SpringBootApplication(exclude = {SocialWebAutoConfiguration.class})
 @MapperScan({"cc.mrbird.*.dao"})
-@EnableConfigurationProperties({FebsSecurityProperties.class, FebsProperies.class, FebsOssQiniuProperties.class})
+@EnableConfigurationProperties({FebsSecurityProperties.class, FebsProperies.class})
 @EnableCaching
 @EnableAsync
 @EnableTransactionManagement

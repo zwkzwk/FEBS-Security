@@ -2,7 +2,8 @@ package cc.mrbird.web.common.thymeleaf.dict;
 
 import cc.mrbird.system.domain.Dict;
 import cc.mrbird.system.service.DictService;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.thymeleaf.IEngineConfiguration;
 import org.thymeleaf.context.ITemplateContext;
@@ -19,8 +20,9 @@ import org.thymeleaf.templatemode.TemplateMode;
 import java.util.List;
 
 
-@Slf4j
 public class DictSelectProcessor extends AbstractElementTagProcessor {
+
+    private Logger log = LoggerFactory.getLogger(this.getClass());
 
     private static final String TAG_NAME = "select";// 标签名
     private static final int PRECEDENCE = 300;
@@ -32,7 +34,6 @@ public class DictSelectProcessor extends AbstractElementTagProcessor {
 
     public DictSelectProcessor(String dialectPrefix) {
         super(TemplateMode.HTML, dialectPrefix, TAG_NAME, true, null, false, PRECEDENCE);
-
     }
 
     @Override
@@ -50,33 +51,28 @@ public class DictSelectProcessor extends AbstractElementTagProcessor {
             final IStandardExpression valueexpression = parser.parseExpression(context, valueAttr.getValue());
             realvalue = String.valueOf(valueexpression.execute(context));
 
-            if (log.isDebugEnabled()) {
+            if (log.isDebugEnabled())
                 log.debug("dict== fieldName:{}, keyy:{}, realvalue:{}", fieldName, valueAttr.getValue(), realvalue);
-            }
         }
         ApplicationContext appCtx = SpringContextUtils.getApplicationContext(context);
         DictService dictService = appCtx.getBean(DictService.class);
         List<Dict> dicts = dictService.findDictByFieldName(fieldName);
-        StringBuffer options = new StringBuffer();
+        StringBuilder options = new StringBuilder();
         String selected = "";
         for (Dict dict : dicts) {
-            if (valueAttr != null && realvalue.equals(dict.getKeyy())) {
+            if (valueAttr != null && realvalue.equals(dict.getKeyy()))
                 selected = " selected=selected ";
-            } else {
+            else
                 selected = "";
-            }
-            options.append("<option value=\"" + dict.getKeyy() + "\" " + selected + ">" + dict.getValuee() + "</option>");
+            options.append("<option value=\"").append(dict.getKeyy()).append("\" ").append(selected).append(">").append(dict.getValuee()).append("</option>");
         }
-        StringBuffer select = new StringBuffer("<select");
-        if (clsAttr != null) {
-            select.append(" class=\"" + clsAttr.getValue() + "\"");
-        }
-        if (nameAttr != null) {
-            select.append(" name=\"" + nameAttr.getValue() + "\"");
-        }
-        if (idAttr != null) {
-            select.append("  id=\"" + idAttr.getValue() + "\"");
-        }
+        StringBuilder select = new StringBuilder("<select");
+        if (clsAttr != null)
+            select.append(" class=\"").append(clsAttr.getValue()).append("\"");
+        if (nameAttr != null)
+            select.append(" name=\"").append(nameAttr.getValue()).append("\"");
+        if (idAttr != null)
+            select.append("  id=\"").append(idAttr.getValue()).append("\"");
         select.append(">");
         select.append(options);
         select.append("<select>");

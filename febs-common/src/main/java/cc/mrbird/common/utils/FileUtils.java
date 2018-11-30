@@ -1,15 +1,11 @@
 package cc.mrbird.common.utils;
 
-import cc.mrbird.common.constants.enums.EnumOss;
+import cc.mrbird.common.domain.EnumOss;
 import cc.mrbird.common.domain.ResponseBo;
-import cc.mrbird.common.properties.FebsOssQiniuProperties;
 import cc.mrbird.common.utils.poi.ExcelUtils;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,13 +18,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-@Slf4j
 public class FileUtils {
-
 
     private FileUtils() {
 
     }
+
+    private static Logger log = LoggerFactory.getLogger(FileUtils.class);
 
     /**
      * 文件名加UUID
@@ -123,70 +119,54 @@ public class FileUtils {
         }
     }
 
-    /**文件上传
+    /**
+     * 文件上传
      *
-     * @param file 文件流
+     * @param file           文件流
      * @param randomFileName 是否使用随机文件名
-     * @param oss 对象存储
-     * @param savePath 文件本地存储路径
-     * @return
+     * @param oss            对象存储
+     * @param savePath       文件本地存储路径
+     * @return ResponseBo
      */
-    public static ResponseBo uploadFile(MultipartFile file, Boolean randomFileName, Enum oss,String savePath) throws IOException {
+    public static ResponseBo uploadFile(MultipartFile file, Boolean randomFileName, Enum oss, String savePath) throws IOException {
 
-        Map resultMap =new HashMap<>();
-
+        Map<String, Object> resultMap = new HashMap<>();
         String fileName = file.getOriginalFilename();
 
-        String localPath = savePath;
+        // String localPath = savePath;
 
-        if(randomFileName){
+        if (randomFileName && StringUtils.isNotBlank(fileName)) {
             fileName = UUID.randomUUID().toString() + "." + fileName.substring(fileName.lastIndexOf(".") + 1);
         }
 
-        if(oss == EnumOss.LOCAL) {
-
+        if (oss == EnumOss.LOCAL) {
             try {
-                String defaulPath= ResourceUtils.getURL("classpath:static").getPath() + "/upload/";
-                if(!new File(defaulPath).exists()) new File(defaulPath).mkdir();
+                String defaulPath = ResourceUtils.getURL("classpath:static").getPath() + "/upload/";
+                if (!new File(defaulPath).exists()) new File(defaulPath).mkdir();
 
                 File dest = new File(StringUtils.isNotBlank(savePath) ? savePath : defaulPath + fileName);
                 file.transferTo(dest);
                 resultMap.put("path", dest.getAbsolutePath());
-            }catch (IOException e){
-                log.error("文件上传到{}失败", oss, e);
+            } catch (IOException e) {
+                log.error("文件上传到{}失败：{}", oss, e);
                 throw new IOException("文件上传失败");
             }
-
-        }else if(oss == EnumOss.QINIU) {
-
+        } else if (oss == EnumOss.QINIU) {
             try {
-                String path= QiniuOssUtil.upload((FileInputStream)file.getInputStream(), fileName);
+                String path = QiniuOssUtil.upload((FileInputStream) file.getInputStream(), fileName);
                 resultMap.put("path", path);
-            }catch (IOException e){
+            } catch (IOException e) {
                 log.error("文件上传到{}失败", oss, e);
                 throw new IOException("文件上传失败");
             }
 
-        }else if(oss == EnumOss.ALIYUN) {
-
-
+        } else if (oss == EnumOss.ALIYUN) {
+            // TODO 根据需求拓展
+        } else {
+            // TODO 根据需求拓展
         }
-
         return ResponseBo.ok(resultMap);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

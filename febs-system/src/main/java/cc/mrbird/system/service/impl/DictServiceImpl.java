@@ -3,10 +3,8 @@ package cc.mrbird.system.service.impl;
 import cc.mrbird.common.domain.QueryRequest;
 import cc.mrbird.common.service.impl.BaseService;
 import cc.mrbird.system.dao.DictMapper;
-import cc.mrbird.system.dao.UserMapper;
 import cc.mrbird.system.domain.Dict;
 import cc.mrbird.system.service.DictService;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,8 +21,9 @@ import java.util.List;
 
 @Service("dictService")
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
-@Slf4j
 public class DictServiceImpl extends BaseService<Dict> implements DictService {
+
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private DictMapper dictMapper;

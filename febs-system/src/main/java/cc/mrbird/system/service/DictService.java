@@ -35,7 +35,7 @@ public interface DictService extends IService<Dict> {
     @Cacheable(key = "#p0.toString()")
     List<Dict> findDictByFieldName(String fieldName);
 
-    /**根据fieldName（字典编码）, keyy（字典项值）查询字典表实体对象
+    /**根据 fieldName（字典编码）, keyy（字典项值）查询字典表实体对象
      *
      * @param fieldName
      * @param keyy
