@@ -14,8 +14,6 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.scheduling.annotation.Async;
@@ -39,8 +37,6 @@ import java.util.*;
 @Component
 public class LogAspect {
 
-    private Logger log = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     private FebsProperies febsProperies;
 
@@ -57,7 +53,7 @@ public class LogAspect {
 
     @Around("pointcut()")
     public Object around(ProceedingJoinPoint point) throws Throwable {
-        Object result = null;
+        Object result;
         long beginTime = System.currentTimeMillis();
         result = point.proceed();
         // 执行时长(毫秒)
