@@ -150,5 +150,3 @@ FEBS-Security是一个简单高效的后台权限管理系统。项目基础框�
 <dict:select fieldName="ssex"  name="type" keyy="1" class="form-control" id="ssex"></dict:select>
 ```
 
-### 反馈交流
-![](http://olwqftdzl.bkt.clouddn.com/18-9-18/77785846.jpg)
